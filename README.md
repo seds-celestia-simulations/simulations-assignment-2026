@@ -12,28 +12,112 @@ template and README brief.
 
 ## Getting started
 
-1. Click **Use this template → Create a new repository** at the top of this page.
-   Make it **public** — it is what you will submit. Do not fork, and do not clone
-   this repository directly; you cannot push to it.
-2. Clone your own copy and set up the environment (see below).
-3. Work inside the week's directory. The template files contain `TODO` blocks —
-   those are the assignment.
+Follow these in order. Every line in a grey box is typed into a terminal
+(Terminal on macOS/Linux, PowerShell on Windows) and run with Enter.
 
-## Setup (uv)
+### 1. Make your own copy of this repository
 
-[uv](https://docs.astral.sh/uv/) handles Python and the dependencies. Install it:
+At the top of this page, click **Use this template → Create a new repository**.
+Give it a name, set the visibility to **Public**, and create it. GitHub then
+takes you to *your* repository — a full copy of this one, under your account.
+
+Do **not** fork this repository, and do **not** clone this one directly. You do
+not have permission to push to it, so your work would have nowhere to go.
+
+### 2. Install the tools
+
+**Git** — check whether you already have it:
+
+```bash
+git --version
+```
+
+If that prints a version number, skip ahead. If it says the command is not
+found, install it from [git-scm.com/downloads](https://git-scm.com/downloads).
+
+**uv** — this installs Python and the libraries for you, so you do not need to
+install Python separately.
+
+On macOS or Linux:
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Then, from the week's directory:
+On Windows (PowerShell):
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Close the terminal and open a new one afterwards, then check it worked:
 
 ```bash
-uv init                # only if pyproject.toml does not exist yet
+uv --version
+```
+
+### 3. Clone your repository in your computer
+
+On *your* repository page, click the green **Code** button and copy the HTTPS
+URL. It looks like `https://github.com/<your-username>/<your-repo-name>.git`.
+
+Then, in a terminal, paste that URL into this command in place of the example:
+
+```bash
+git clone https://github.com/<your-username>/<your-repo-name>.git
+```
+
+That creates a folder with the same name as your repository. Move into it:
+
+```bash
+cd <your-repo-name>
+```
+
+### 4. Move into the week's folder
+
+```bash
+cd "week 1"
+```
+
+The quotes matter — the folder name has a space in it, and without them the
+terminal reads it as two separate things.
+
+### 5. Install the libraries and run the simulation
+
+Run these three, one at a time, from inside the `week 1` folder:
+
+```bash
+uv init
 uv add pygame numpy
 uv run main.py
 ```
+
+The first one sets up the project, the second downloads pygame and numpy, and
+the third starts the simulation. This takes a moment the first time.
+
+A window should open showing a circle with a ball inside it. Close the window to
+stop the program.
+
+From now on, only the last one is needed:
+
+```bash
+uv run main.py
+```
+
+### 6. Do the work, then save it back to GitHub
+
+Open `main.py` in any editor and fill in the `TODO` blocks. Whenever you want to
+save your progress to GitHub, run these three from inside your repository
+folder:
+
+```bash
+git add .
+git commit -m "describe what you changed"
+git push
+```
+
+The first `git push` may ask you to sign in to GitHub. Once it finishes, refresh
+your repository page in the browser and your changes will be there.
 
 ## What to do each week
 
