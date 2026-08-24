@@ -1,4 +1,4 @@
-# SEDS Celestia — Simulations Induction
+# Simulations Induction Assignment 2026.
 
 Induction assignment for the Simulations vertical, split across three
 weeks of work. Each week lives in its own directory with its own spec PDF, code
