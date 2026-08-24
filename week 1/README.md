@@ -1,49 +1,19 @@
-# Rigid Balls, Round Walls
+# Week 1 — Rigid Balls, Round Walls
 
-Week 1 — SEDS Celestia Simulations induction. Build a 2D rigid-ball simulator in
-Python with Pygame: equal-radius, equal-mass balls falling under gravity inside a
-circular arena. Full spec in `week1.pdf`.
+Gravity integration and collision detection for rigid balls bouncing inside a
+circular boundary.
 
-## Submission
+- **Spec:** [`week1.pdf`](./week1.pdf) — read it first, it is the authority.
+- **Template:** [`main.py`](./main.py) — runs as-is, but the physics is missing.
+  Three `TODO` blocks: gravity, the wall collision response, and ball-to-ball
+  collisions (plus wiring that last one into the simulation loop).
+- **Setup:** see the [root README](../README.md).
 
-1. Write the brief in the README file of your repository: answers to Question 1 and Question 2
-   (mandatory), plus what you make of your own results like where it broke, what
-   surprised you. Half a page is plenty.
-2. Push source code + this README to a public GitHub repo.
-3. Link the repo in the Google Form. Due EOD 7th June 2026.
+**Due: EOD, 7th June 2026.**
 
-**Honest notes on incomplete work score above finished work you cannot explain.**
+## Your brief goes here
 
-## Setup (uv)
+**Replace this file with your assignment brief.** It must contain your answers to
+**Question 1** and **Question 2**.
 
-[uv](https://docs.astral.sh/uv/) handles Python and the dependencies. Install it:
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Then from this directory:
-
-```bash
-uv init                # only if pyproject.toml does not exist yet
-uv add pygame
-uv run main.py
-```
-
-`uv run` creates the virtual environment and installs pygame on first use — no
-manual `venv` activation needed. To drop into a shell with it anyway:
-
-```bash
-uv sync
-source .venv/bin/activate
-```
-
-One-off run without touching the project files:
-
-```bash
-uv run --with pygame main.py
-```
-
-## Brief
-
-*(answers go here)*
+Half a page is plenty.

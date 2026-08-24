@@ -10,9 +10,18 @@ HEIGHT = 800
 BOWL_CENTER = np.array([WIDTH / 2, HEIGHT / 2], dtype=float)
 BOWL_RADIUS = 300
 
-NUM_PARTICLES = 50
-PARTICLE_RADIUS = 6
+# Start with 1 ball (Part A/B), then 2 (Section II). Many balls is the bonus.
+NUM_PARTICLES = 1
+PARTICLE_RADIUS = 12
 PARTICLE_SPEED = 150.0
+
+# Pixels per second squared, not m/s^2: the arena is 300 px wide, so a literal
+# 9.8 would be far too slow to see. Note that +y points DOWN on screen.
+GRAVITY = 900.0
+
+# e_w, the wall restitution coefficient.
+# 1.0 = no energy lost on a bounce, < 1.0 = each bounce comes back lower.
+WALL_RESTITUTION = 1.0
 
 FPS = 60
 
@@ -25,14 +34,16 @@ class Particle:
         self.radius = radius
 
     def update(self, dt):
-        self.position += self.velocity * dt
-
         # TODO (GRAVITY TASK):
         # Apply gravitational acceleration to the particle.
+        # Do it HERE, before the position step below, so that the position is
+        # moved using the already-updated velocity.
         #
         # Hint:
         # Try to think about the physical relation,
         # how you would define acceleration, what would it affect in the particles.
+
+        self.position += self.velocity * dt
 
         # Keep the particle inside the circular bowl.
         offset = self.position - BOWL_CENTER
@@ -41,16 +52,20 @@ class Particle:
         max_distance = BOWL_RADIUS - self.radius
 
         if distance > max_distance:
-            # Move the particle back onto the valid boundary.
-            normal = offset / distance
-            self.position = BOWL_CENTER + normal * max_distance
-
-            # Reflect the velocity across the boundary normal.
-            # v' = v - 2(v · n)n
-            self.velocity = (
-                self.velocity
-                - 2 * np.dot(self.velocity, normal) * normal
-            )
+            # TODO (WALL COLLISION TASK):
+            # The particle has left the bowl. Two things need fixing here.
+            #
+            # Hint:
+            # First, where should the particle actually be? It has strayed past
+            # the wall, so put it back on the boundary it should have stopped at.
+            # `offset` points from the centre of the bowl out to the particle,
+            # so what does it become once you strip its length away?
+            #
+            # Second, what happens to the velocity? Only the part of it pointing
+            # along that outward direction should change, the part sliding along
+            # the wall carries on untouched. WALL_RESTITUTION decides how much of
+            # the incoming speed survives the bounce.
+            pass
 
     def draw(self, screen):
         pygame.draw.circle(
@@ -120,6 +135,8 @@ particles = []
 for _ in range(NUM_PARTICLES):
     particle = Particle(
         random_position_in_bowl(),
+        # Random starting velocity. Replace with [0.0, 0.0] to drop the ball
+        # from rest, which is what you want for the e_w checks in Part B.
         random_velocity()
     )
 
