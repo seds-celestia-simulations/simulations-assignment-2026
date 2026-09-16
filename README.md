@@ -7,7 +7,7 @@ template and README brief.
 | Week | Topic | Status |
 | --- | --- | --- |
 | [Week 1](./week%201) | *Rigid Balls, Round Walls* — gravity integration and collision detection for rigid balls bouncing inside a circular boundary, drawn with Pygame. | released |
-| Week 2 | TBD | not released |
+| [Week 2](./week2/) | *The Sandbox* - simulating falling sand and water using a grid based simulation | released |
 | Week 3 | TBD | not released |
 
 ## Getting started
